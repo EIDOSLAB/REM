@@ -1,0 +1,82 @@
+{
+    "experiment_name": "rem/pruning",
+    "tensorboard": false,
+    "dataset": "mnist",
+    "num_classes": 10,
+    "input_channels": 1,
+    "input_height": 28,
+    "input_width": 28,
+    "shift_pixels": 2,
+    "augmentation": true,
+    "mean": [0.1307],
+    "std": [0.3081],
+    "binning": false,
+
+    "pruning" : {
+        "type": "LOBSTER",
+        "args": {
+            "pwe" : -1,
+            "max_lmbda": 1e-4,
+            "min_lmbda": 0
+        }
+    },
+
+    "model": "GammaCapsNet",
+    "start_epoch": 0,
+    "epochs": 100,
+    "batch_size": 128,
+    "optimizer": "adam",
+    "lr": 1e-3,
+    "min_lr": 0,
+    "decay_rate": 0.99,
+    "decay_steps": 1,
+    "monitor": "loss",
+    "iter_size": 1,
+    "primary_num_routing_iterations": 0,
+    "routing": "sda",
+    "num_routing_iterations": 3,
+    "patience": 200,
+    "trainable_routing": false,
+    "coupl_coeff": true,
+    "use_cuda": true,
+    "cuda_device": "cuda:0",
+    "num_workers": 4,
+    "pin_memory": true,
+    "print_every": 10,
+    "save_every": 1,
+    "seeds": [42],
+
+    "input_channels_conv1": 1,
+    "out_channels_conv1": 256,
+    "kernel_size_conv1": 9,
+    "stride_conv1": 1,
+    "padding_conv1": 0,
+    "dilation_conv1": 1,
+
+    "dim_primaryCaps": [8,1],
+    "num_primaryCaps_types": 32,
+    "squashing_primaryCaps": "hinton",
+    "kernel_size_primaryCaps": 9,
+    "stride_primaryCaps": 2,
+    "padding_primaryCaps": 0,
+    "dilation_primaryCaps": 1,
+
+    "dim_classCaps": [16,1],
+    "transform_share_classCaps": false,
+
+    "reconstruction": "None",
+    "out_features_fc1": 512,
+    "out_features_fc2": 1024,
+    "out_features_fc3": 784,
+
+    "caps_loss": "margin",
+    "batch_averaged": true,
+    "margin_loss_lambda": 0.5,
+    "m_minus": 0.1,
+    "m_plus": 0.9,
+    "m_max": 0.9,
+    "m_min": 0.2,
+    "reconstruction_loss_lambda": 0.0005,
+
+    "cmap": "gray"
+}
